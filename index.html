@@ -18,26 +18,36 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
                             <h4>{{list.name}}</h4>
-                            <button 
-
-                            :class="list.status == 'creating' ? 'btn-warning' : 'btn-danger'"
-                            class="btn btn-sm"
-                            @click = "removeList(index)"
-                            >
-                             {{ list.status == 'creating' ? 'Cancelar' : 'Eliminar' }} 
+                            <button :class="list.status == 'creating' ? 'btn-warning' : 'btn-danger'" class="btn btn-sm"
+                                @click="removeList(index)">
+                                {{ list.status == 'creating' ? 'Cancelar' : 'Eliminar' }}
                             </button>
                         </div>
                     </div>
                     <div class="card-body">
                         <form action="/" @submit.prevent="saveList(list)">
-                            <div class="form-group"
-                            v-if= "list.status != 'saved'">
+                            <div class="form-group" v-if="list.status != 'saved'">
                                 <input class="form-control" placeholder="Nombre de la lista" v-model="list.name">
                             </div>
                             <button v-if="list.status != 'saved'" class="btn btn-primary btn-block">
                                 Guardar
                             </button>
                         </form>
+                    </div>
+
+                    <div class="card-body" v-if= "list.status  == 'saved'">
+                        <form action="/" >
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Nombre de la lista" >
+                            </div>
+                        </form>
+                        <button class="btn btn-dark">
+                            Añadir tarjeta
+                        </button>
+                        <button class="btn btn-dark">
+                            X
+                        </button>
+
                     </div>
                 </div>
             </div>
@@ -46,6 +56,12 @@
                     Agregar lista
                 </button>
             </div>
+
+
+
+
+
+
         </div>
     </div>
     <!-- development version, includes helpful console warnings -->
