@@ -26,29 +26,36 @@
                     </div>
                     <div class="card-body">
                         <form action="/" @submit.prevent="saveList(list)">
-                            <div class="form-group" v-if="list.status != 'saved'">
+                            <div 
+                            class="form-group" 
+                            v-if="list.status != 'saved'">
                                 <input class="form-control" placeholder="Nombre de la lista" v-model="list.name">
                             </div>
                             <button v-if="list.status != 'saved'" class="btn btn-primary btn-block">
                                 Guardar
                             </button>
-                        </form>
-                    </div>
 
-                    <div class="card-body" v-if= "list.status  == 'saved'">
-                        <form action="/" >
-                            <div class="form-group">
-                                <input class="form-control" placeholder="Nombre de la lista" >
+
+                            <div class="form-group" 
+                            
+                            v-for="card in list.cards">
+                                <input class="form-control" 
+                                placeholder="Descripcion de la tarjeta" 
+                                v-model="card.title">
                             </div>
-                        </form>
-                        <button class="btn btn-dark">
-                            Añadir tarjeta
-                        </button>
-                        <button class="btn btn-dark">
-                            X
-                        </button>
+                            <button 
+                            v-if="list.status == 'saved'" 
+                            class="btn btn-dark btn-block"
+                            @click="addCardList(list)">
+                                Añadir Tarjeta
+                            </button>
 
+
+
+                        </form>
                     </div>
+
+                   
                 </div>
             </div>
             <div class="col-md-4 mt-3">

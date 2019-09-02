@@ -16,6 +16,12 @@ const app = new Vue({
         },
         removeList(index){
             this.lists.splice(index,1)
+        },
+        addCardList(list){
+            const newCard={
+                title:''
+            }
+            list.cards.push(newCard)
         }
     },
 })
